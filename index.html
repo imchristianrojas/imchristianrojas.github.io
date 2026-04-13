@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Christian Rojas — Software Engineer">
+  <title>Christian Rojas</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:      #0d0d0d;
+      --surface: #161616;
+      --border:  #222;
+      --text:    #d4d4d4;
+      --muted:   #5a5a5a;
+      --accent:  #5b8dee;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 0 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 6rem 0 5rem;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+
+    .header {
+      margin-bottom: 4.5rem;
+    }
+
+    .header h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #ececec;
+      margin-bottom: 0.3rem;
+    }
+
+    .header .role {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .header .bio {
+      color: var(--muted);
+      font-size: 0.88rem;
+      max-width: 400px;
+    }
+
+    .header .links {
+      margin-top: 1.4rem;
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .header .links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.12s;
+    }
+
+    .header .links a:hover { color: var(--text); }
+
+    /* ── Section label ───────────────────────────── */
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Project grid ────────────────────────────── */
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      margin-bottom: 5rem;
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 1.5rem;
+      text-decoration: none;
+      display: block;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+      outline: none;
+    }
+
+    .project-card:nth-child(even) { border-right: none; }
+    .project-card:nth-last-child(-n+2) { border-bottom: none; }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+      background: var(--surface);
+    }
+
+    .card-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ececec;
+      margin-bottom: 0.45rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Language dot */
+    .lang {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lang::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .lang-cpp    { color: #c7556e; } .lang-cpp::before    { background: #c7556e; }
+    .lang-js     { color: #c9b84a; } .lang-js::before     { background: #c9b84a; }
+    .lang-python { color: #5b8dee; } .lang-python::before { background: #5b8dee; }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.45rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Footer ──────────────────────────────────── */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ──────────────────────────────── */
+
+    @media (max-width: 500px) {
+      .projects { grid-template-columns: 1fr; }
+
+      .project-card { border-right: none; }
+      .project-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .project-card:last-child { border-bottom: none; }
+
+      main { padding: 3.5rem 0 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+    <header class="header">
+      <h1>Christian Rojas</h1>
+      <div class="role">Software Engineer</div>
+      <p class="bio">I like creating stuff.</p>
+      <nav class="links" aria-label="External links">
+        <a href="https://github.com/imchristianrojas" target="_blank" rel="noopener noreferrer">github</a>
+      </nav>
+    </header>
+
+    <div class="section-label">projects</div>
+
+    <div class="projects" role="list">
+
+      <a class="project-card"
+         href="https://github.com/imchristianrojas/2D-NS-Solver"
+         target="_blank" rel="noopener noreferrer"
+         role="listitem">
+        <div class="card-name">2D Navier-Stokes Solver</div>
+        <div class="card-desc">Computational fluid dynamics simulation of 2D incompressible viscous flow.</div>
+        <div class="card-meta">
+          <span class="lang lang-cpp">C++</span>
+          <span class="badge">in progress</span>
+        </div>
+      </a>
+
+      <a class="project-card"
+         href="https://github.com/imchristianrojas/dBot"
+         target="_blank" rel="noopener noreferrer"
+         role="listitem">
+        <div class="card-name">Discord Bot</div>
+        <div class="card-desc">A Discord bot built for utility and automation.</div>
+        <div class="card-meta">
+          <span class="lang lang-js">JavaScript</span>
+        </div>
+      </a>
+
+      <a class="project-card"
+         href="https://github.com/imchristianrojas/Slack-Mock"
+         target="_blank" rel="noopener noreferrer"
+         role="listitem">
+        <div class="card-name">Slack Mock</div>
+        <div class="card-desc">End-to-end tested mock of the Slack messaging interface.</div>
+        <div class="card-meta">
+          <span class="lang lang-js">JavaScript</span>
+        </div>
+      </a>
+
+      <a class="project-card"
+         href="https://github.com/imchristianrojas/lab-playground"
+         target="_blank" rel="noopener noreferrer"
+         role="listitem">
+        <div class="card-name">Lab Playground</div>
+        <div class="card-desc">Experiments with real-world apps — learning, relearning, sparking ideas.</div>
+        <div class="card-meta">
+          <span class="lang lang-python">Python</span>
+        </div>
+      </a>
+
+    </div>
+
+    <footer>
+      &copy; 2026 Christian Rojas
+    </footer>
+
+  </main>
+</body>
+</html>
