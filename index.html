@@ -13,12 +13,13 @@
     }
 
     :root {
-      --bg:      #0d0d0d;
-      --surface: #161616;
-      --border:  #222;
-      --text:    #d4d4d4;
-      --muted:   #5a5a5a;
-      --accent:  #5b8dee;
+      --bg:      #0c1020;
+      --surface: #141a2e;
+      --border:  #242b42;
+      --text:    #d6dbe8;
+      --muted:   #7c849b;
+      --soft:    #a0a8bd;
+      --accent:  #8ab4ff;
       --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       --mono: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
     }
@@ -27,31 +28,55 @@
 
     body {
       background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 80% -10%, rgba(138, 180, 255, 0.08), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 10% 100%, rgba(180, 140, 255, 0.05), transparent 60%);
+      background-attachment: fixed;
       color: var(--text);
       font-family: var(--sans);
       font-size: 15px;
       line-height: 1.65;
       padding: 0 1.5rem;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.55), transparent 50%),
+        radial-gradient(1px 1px at 78% 32%, rgba(255,255,255,0.4),  transparent 50%),
+        radial-gradient(1px 1px at 45% 72%, rgba(255,255,255,0.5),  transparent 50%),
+        radial-gradient(1px 1px at 88% 85%, rgba(255,255,255,0.35), transparent 50%),
+        radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,0.3),  transparent 50%),
+        radial-gradient(1px 1px at 63% 12%, rgba(255,255,255,0.4),  transparent 50%),
+        radial-gradient(1px 1px at 33% 92%, rgba(255,255,255,0.35), transparent 50%);
     }
 
     main {
-      max-width: 660px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 6rem 0 5rem;
+      padding: 5.5rem 0 4rem;
+      position: relative;
+      z-index: 1;
     }
 
     /* ── Header ─────────────────────────────────── */
 
     .header {
-      margin-bottom: 4.5rem;
+      margin-bottom: 4rem;
     }
 
     .header h1 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: -0.025em;
-      color: #ececec;
+      color: #f0f3fa;
       margin-bottom: 0.3rem;
     }
 
@@ -65,9 +90,9 @@
     }
 
     .header .bio {
-      color: var(--muted);
-      font-size: 0.88rem;
-      max-width: 400px;
+      color: var(--soft);
+      font-size: 0.92rem;
+      max-width: 460px;
     }
 
     .header .links {
@@ -85,7 +110,17 @@
       transition: color 0.12s;
     }
 
-    .header .links a:hover { color: var(--text); }
+    .header .links a:hover { color: var(--accent); }
+
+    /* ── About ──────────────────────────────────── */
+
+    .about {
+      margin-bottom: 3.5rem;
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    .about p + p { margin-top: 0.9rem; }
 
     /* ── Section label ───────────────────────────── */
 
@@ -98,52 +133,69 @@
       margin-bottom: 1.25rem;
     }
 
-    /* ── Project grid ────────────────────────────── */
+    /* ── Projects ────────────────────────────────── */
 
     .projects {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       border: 1px solid var(--border);
-      margin-bottom: 5rem;
+      border-radius: 4px;
+      background: rgba(20, 26, 46, 0.72);
+      backdrop-filter: blur(6px);
+      margin-bottom: 4rem;
+      overflow: hidden;
     }
 
     .project-card {
-      background: var(--bg);
-      padding: 1.5rem;
+      padding: 1.5rem 1.6rem;
       text-decoration: none;
       display: block;
-      border-right: 1px solid var(--border);
+      color: inherit;
       border-bottom: 1px solid var(--border);
       transition: background 0.12s;
       outline: none;
     }
 
-    .project-card:nth-child(even) { border-right: none; }
-    .project-card:nth-last-child(-n+2) { border-bottom: none; }
+    .project-card:last-child { border-bottom: none; }
 
     .project-card:hover,
     .project-card:focus-visible {
-      background: var(--surface);
+      background: rgba(138, 180, 255, 0.06);
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
     }
 
     .card-name {
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: #ececec;
-      margin-bottom: 0.45rem;
+      color: #f0f3fa;
     }
 
     .card-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
+      font-size: 0.85rem;
+      color: var(--soft);
       line-height: 1.55;
-      margin-bottom: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-story {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      border-left: 2px solid var(--border);
+      padding-left: 0.85rem;
+      margin-bottom: 1rem;
     }
 
     .card-meta {
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
     /* Language dot */
@@ -164,16 +216,17 @@
       flex-shrink: 0;
     }
 
-    .lang-cpp    { color: #c7556e; } .lang-cpp::before    { background: #c7556e; }
-    .lang-js     { color: #c9b84a; } .lang-js::before     { background: #c9b84a; }
-    .lang-python { color: #5b8dee; } .lang-python::before { background: #5b8dee; }
+    .lang-cpp    { color: #e07a93; } .lang-cpp::before    { background: #e07a93; }
+    .lang-js     { color: #e5c547; } .lang-js::before     { background: #e5c547; }
+    .lang-python { color: #8ab4ff; } .lang-python::before { background: #8ab4ff; }
 
     .badge {
       font-family: var(--mono);
       font-size: 0.65rem;
       color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
-      padding: 0.1rem 0.45rem;
+      padding: 0.12rem 0.5rem;
       border-radius: 2px;
       letter-spacing: 0.03em;
     }
@@ -191,13 +244,9 @@
     /* ── Responsive ──────────────────────────────── */
 
     @media (max-width: 500px) {
-      .projects { grid-template-columns: 1fr; }
-
-      .project-card { border-right: none; }
-      .project-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .project-card:last-child { border-bottom: none; }
-
       main { padding: 3.5rem 0 3.5rem; }
+      .project-card { padding: 1.25rem  1.25rem; }
+      .card-head { flex-direction: column; gap: 0.25rem; }
     }
   </style>
 </head>
@@ -206,12 +255,19 @@
 
     <header class="header">
       <h1>Christian Rojas</h1>
-      <div class="role">Software Engineer</div>
-      <p class="bio">I like creating stuff.</p>
+      <div class="role">Engineer</div>
+      <p class="bio">I like creating stuff — mostly at the intersection of systems, simulation, and the web.</p>
       <nav class="links" aria-label="External links">
         <a href="https://github.com/imchristianrojas" target="_blank" rel="noopener noreferrer">github</a>
+        <a href="mailto:crojas0315@gmail.com">email</a>
       </nav>
     </header>
+
+    <section class="about">
+      <div class="section-label">about</div>
+      <p>I build things to learn how they work. Some start as weekend curiosity and grow into something useful; others stay as scratch-pad experiments.</p>
+      <p>Lately I've been spending time with numerical methods, voice interfaces, and end-to-end testing.</p>
+    </section>
 
     <div class="section-label">projects</div>
 
@@ -221,8 +277,11 @@
          href="https://github.com/imchristianrojas/2D-NS-Solver"
          target="_blank" rel="noopener noreferrer"
          role="listitem">
-        <div class="card-name">2D Navier-Stokes Solver</div>
+        <div class="card-head">
+          <span class="card-name">2D Navier-Stokes Solver</span>
+        </div>
         <div class="card-desc">Computational fluid dynamics simulation of 2D incompressible viscous flow.</div>
+        <p class="card-story">Started this to actually understand the math behind fluid simulation instead of just reading about it. Writing the projection method from scratch in C++ forces you to confront every boundary condition and stability assumption.</p>
         <div class="card-meta">
           <span class="lang lang-cpp">C++</span>
           <span class="badge">in progress</span>
@@ -230,11 +289,14 @@
       </a>
 
       <a class="project-card"
-         href="https://github.com/imchristianrojas/dBot"
+         href="https://github.com/imchristianrojas/discord-llm-bot"
          target="_blank" rel="noopener noreferrer"
          role="listitem">
-        <div class="card-name">Discord Bot</div>
-        <div class="card-desc">A Discord bot built for utility and automation.</div>
+        <div class="card-head">
+          <span class="card-name">Discord LLM Bot</span>
+        </div>
+        <div class="card-desc">Voice bot that listens in a Discord channel, plays music, and talks back using OpenAI.</div>
+        <p class="card-story">Wanted a hands-free way to hang out in voice with friends — ask for a song, ask a question, get a spoken answer. Built around Whisper for transcription, OpenAI for responses, and yt-dlp for audio, deployed on EC2.</p>
         <div class="card-meta">
           <span class="lang lang-js">JavaScript</span>
         </div>
@@ -244,8 +306,11 @@
          href="https://github.com/imchristianrojas/Slack-Mock"
          target="_blank" rel="noopener noreferrer"
          role="listitem">
-        <div class="card-name">Slack Mock</div>
+        <div class="card-head">
+          <span class="card-name">Slack Mock</span>
+        </div>
         <div class="card-desc">End-to-end tested mock of the Slack messaging interface.</div>
+        <p class="card-story">A sandbox for practicing real end-to-end testing on a UI that actually looks like something people use. Good excuse to get comfortable with the full test pyramid — unit, integration, and browser-level.</p>
         <div class="card-meta">
           <span class="lang lang-js">JavaScript</span>
         </div>
@@ -255,8 +320,11 @@
          href="https://github.com/imchristianrojas/lab-playground"
          target="_blank" rel="noopener noreferrer"
          role="listitem">
-        <div class="card-name">Lab Playground</div>
+        <div class="card-head">
+          <span class="card-name">Lab Playground</span>
+        </div>
         <div class="card-desc">Experiments with real-world apps — learning, relearning, sparking ideas.</div>
+        <p class="card-story">A loose collection of small Python experiments. Lower stakes than a "real" project, which makes it the right place to try an unfamiliar library or prototype an idea before it earns its own repo.</p>
         <div class="card-meta">
           <span class="lang lang-python">Python</span>
         </div>
