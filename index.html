@@ -219,6 +219,7 @@
     .lang-cpp    { color: #e07a93; } .lang-cpp::before    { background: #e07a93; }
     .lang-js     { color: #e5c547; } .lang-js::before     { background: #e5c547; }
     .lang-python { color: #8ab4ff; } .lang-python::before { background: #8ab4ff; }
+    .lang-go     { color: #5dc9e2; } .lang-go::before     { background: #5dc9e2; }
 
     .badge {
       font-family: var(--mono);
@@ -272,6 +273,20 @@
     <div class="section-label">projects</div>
 
     <div class="projects" role="list">
+
+      <a class="project-card"
+         href="https://github.com/imchristianrojas/logsift"
+         target="_blank" rel="noopener noreferrer"
+         role="listitem">
+        <div class="card-head">
+          <span class="card-name">LogSift</span>
+        </div>
+        <div class="card-desc">High-performance concurrent CLI log analyzer — parses and summarizes web access logs, surfacing traffic metrics, status codes, and top paths.</div>
+        <p class="card-story">Wanted to see how fast a log analyzer could go with nothing but the standard library. Fanning the work across concurrent workers chews through a 50 MB / 500k-line file in about 200 ms — zero external dependencies, just Go's runtime doing the heavy lifting.</p>
+        <div class="card-meta">
+          <span class="lang lang-go">Go</span>
+        </div>
+      </a>
 
       <a class="project-card"
          href="https://github.com/imchristianrojas/2D-NS-Solver"
